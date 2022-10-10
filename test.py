@@ -50,9 +50,21 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(Matrix.mul(m1, 2).data, [[-2, -2, -2], [-2, -2, -2]])
         self.assertEqual(Matrix.mul(m4, [1, 2, 3]).data, 'TypeError')
 
-    # TODO
     def testPow(self):
-        pass
+        m1 = Matrix.fill(3, 3, -1)
+        m2 = Matrix.fill(3, 3, 0)
+        m3 = Matrix.fill(3, 2, 5)
+        m4 = Matrix.fill(3, 3, 2)
+        self.assertEqual(Matrix.pow(m1, 2).data, [[3, 3, 3], [3, 3, 3],
+                                                  [3, 3, 3]])
+        self.assertEqual(Matrix.pow(m3, 3).data, 'IndexError')
+        self.assertEqual(Matrix.pow(m2, 2).data, [[0, 0, 0], [0, 0, 0],
+                                                  [0, 0, 0]])
+        self.assertEqual(Matrix.pow(m1, 3).data, [[-9, -9, -9], [-9, -9, -9],
+                                                  [-9, -9, -9]])
+        self.assertEqual(Matrix.pow(m4, 8).data, [[559872, 559872, 559872],
+                                                  [559872, 559872, 559872],
+                                                  [559872, 559872, 559872]])
 
     # TODO
     def testTranspose(self):

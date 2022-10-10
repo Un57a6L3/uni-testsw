@@ -68,12 +68,15 @@ class Matrix:
                     res.data[m][n] += op1.data[m][i] * op2.data[i][n]
         return res
 
-    """
     # Метод возведения матрицы в степень
-    # TODO
-    def pow():
-        pass
-    """
+    @staticmethod
+    def pow(op1: 'Matrix', op2: int):
+        if op1.mdim != op1.ndim:
+            return type('obj', (object,), {'data': 'IndexError'})
+        res = Matrix.identity(op1.mdim)
+        for _ in range(op2):
+            res = Matrix.mul(res, op1)
+        return res
 
     # Единичная матрица заданного размера
     @staticmethod

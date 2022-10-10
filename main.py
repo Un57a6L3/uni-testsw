@@ -31,8 +31,18 @@ class Matrix:
 
     # Метод вычитания двух матриц
     # TODO
-    def sub():
-        pass
+   def sub(op1: 'Matrix', op2: 'Matrix'):
+        # Проверка, совпадают ли размеры матриц
+        if op1.ndim != op2.ndim or op1.mdim != op2.mdim:
+            return type('obj', (object,), {'data': 'IndexError'})
+
+        # Вычитание матриц
+        res = Matrix.fill(op1.mdim, op1.ndim)
+        for m in range(res.mdim):
+            for n in range(res.ndim):
+                res.data[m][n] = op1.data[m][n] - op2.data[m][n]
+        return res
+      
 
     # Метод умножения двух матриц (или матрицы и числа)
     # TODO

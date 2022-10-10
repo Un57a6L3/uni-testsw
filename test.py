@@ -20,7 +20,6 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(Matrix.add(m7, m8).data, [[10, 9, 8], [7, 6, 5],
                                                    [4, 3, 2]])
 
-    # TODO
     def testSub(self):
         m1 = Matrix.fill(2, 3, 1)
         m2 = Matrix.fill(2, 2, -1)
@@ -66,10 +65,18 @@ class TestMatrix(unittest.TestCase):
                                                   [559872, 559872, 559872],
                                                   [559872, 559872, 559872]])
 
-    # TODO
     def testTranspose(self):
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+        m1 = Matrix.fill(2, 3, -1)
+        m2 = Matrix([[2, 4, 3], [5, 1, 2]])
+        m3 = Matrix.identity(3)
+        m4 = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+        m5 = Matrix([[9, 8, 7], [6, 5, 4], [3, 2, 1]])
+        self.assertEqual(Matrix.transpose(m1).data, [[-1, -1], [-1, -1],
+                                                     [-1, -1]])
+        self.assertEqual(Matrix.transpose(m2).data, [[2, 5], [4, 1], [3, 2]])
+        self.assertEqual(Matrix.transpose(m3).data, [[1, 0, 0], [0, 1, 0],
+                                                     [0, 0, 1]])
+        self.assertEqual(Matrix.transpose(m4).data, [[1, 4, 7], [2, 5, 8],
+                                                     [3, 6, 9]])
+        self.assertEqual(Matrix.transpose(m5).data, [[9, 6, 3], [8, 5, 2],
+                                                     [7, 4, 1]])

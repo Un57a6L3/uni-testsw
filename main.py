@@ -31,7 +31,7 @@ class Matrix:
 
     # Метод вычитания двух матриц
     # TODO
-   def sub(op1: 'Matrix', op2: 'Matrix'):
+    def sub(op1: 'Matrix', op2: 'Matrix'):
         # Проверка, совпадают ли размеры матриц
         if op1.ndim != op2.ndim or op1.mdim != op2.mdim:
             return type('obj', (object,), {'data': 'IndexError'})
@@ -42,23 +42,47 @@ class Matrix:
             for n in range(res.ndim):
                 res.data[m][n] = op1.data[m][n] - op2.data[m][n]
         return res
-      
 
     # Метод умножения двух матриц (или матрицы и числа)
-    # TODO
-    def mul():
-        pass
+    @staticmethod
+    def mul(op1: 'Matrix', op2):
+    # Проверка типа, умножение на число
+        if type(op2) in (int, float):
+            res = Matrix.fill(op1.mdim, op1.ndim)
+            for m in range(op1.mdim):
+                for n in range(op1.ndim):
+                    res.data[m][n] = op1.data[m][n] * op2
+            return res
 
+        # Проверка типа и длин нужных сторон матриц
+        if type(op2) is not Matrix:
+            return type('obj', (object,), {'data': 'TypeError'})
+        if op1.ndim != op2.mdim:
+            return type('obj', (object,), {'data': 'IndexError'})
+
+        # Умножение матриц
+        res = Matrix.fill(op1.mdim, op2.ndim, value=0)
+        for m in range(op1.mdim):
+            for n in range(op2.ndim):
+                for i in range(op1.ndim):
+                    res.data[m][n] += op1.data[m][i] * op2.data[i][n]
+        return res
+
+    """
     # Метод возведения матрицы в степень
     # TODO
     def pow():
         pass
+    """
 
     # Единичная матрица заданного размера
-    # TODO
-    def identity():
-        pass
-
+    @staticmethod
+    def identity(dim: int):
+        res = Matrix.fill(dim, dim, value=0)
+        for i in range(dim):
+            res.data[i][i] = 1
+        return res
+    """
     # Метод транспонирования матрицы
     # TODO
     def transpose():
@@ -68,7 +92,7 @@ class Matrix:
     # TODO
     def enter():
         pass
-
+    """
 
 # TODO
 def main():

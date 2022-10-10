@@ -38,9 +38,17 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(Matrix.sub(m7, m8).data, [[8, 7, 6], [5, 4, 3],
                                                    [2, 1, 0]])
 
-    # TODO
     def testMul(self):
-        pass
+        m1 = Matrix.fill(2, 3, -1)
+        m2 = Matrix.fill(3, 2, -1)
+        m3 = Matrix.fill(3, 3, 5)
+        m4 = Matrix.identity(3)
+        self.assertEqual(Matrix.mul(m1, m2).data, [[3, 3], [3, 3]])
+        self.assertEqual(Matrix.mul(m1, m1).data, 'IndexError')
+        self.assertEqual(Matrix.mul(m3, m4).data, [[5, 5, 5], [5, 5, 5],
+                                                   [5, 5, 5]])
+        self.assertEqual(Matrix.mul(m1, 2).data, [[-2, -2, -2], [-2, -2, -2]])
+        self.assertEqual(Matrix.mul(m4, [1, 2, 3]).data, 'TypeError')
 
     # TODO
     def testPow(self):

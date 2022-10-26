@@ -143,35 +143,38 @@ def main():
     onflag = True
     print('--- Перед действиями задайте матрицы, над которыми действие выполняется ---')
     while onflag:
-        print('\nВыберите действие из списка')
-        for key, value in actions.items():
-            print(f'{key}: {value[0]}')
-        action = int(input('Введите номер действия: '))
-        args = []
+        try:
+            print('\nВыберите действие из списка')
+            for key, value in actions.items():
+                print(f'{key}: {value[0]}')
+            action = int(input('Введите номер действия: '))
+            args = []
 
-        # Выход из цикла
-        if action == 0:
-            onflag = False
-            break
-        # Действия
-        if len(matrices) < actions[action][2]:
-            print('Перед действием введите матрицы над которыми оно производится')
-            continue
-        for i in range(actions[action][2]):
-            temp = input(f'Введите имя матрицы {i + 1}: ')
-            args.append(matrices[temp])
-        for i in range(actions[action][3]):
-            temp = float(input(f'Введите число: '))
-            if temp.is_integer():
-                temp = int(temp)
-            args.append(temp)
-        res = actions[action][1](*args)
-        temp = chr(ord('A') + len(matrices))
-        matrices[temp] = res
-        if action != 1:
-            print('Результат:')
-            matrices[temp].print()
-        print(f'Матрица записана под именем {temp}')
+            # Выход из цикла
+            if action == 0:
+                onflag = False
+                break
+            # Действия
+            if len(matrices) < actions[action][2]:
+                print('Перед действием введите матрицы над которыми оно производится')
+                continue
+            for i in range(actions[action][2]):
+                temp = input(f'Введите имя матрицы {i + 1}: ')
+                args.append(matrices[temp])
+            for i in range(actions[action][3]):
+                temp = float(input(f'Введите число: '))
+                if temp.is_integer():
+                    temp = int(temp)
+                args.append(temp)
+            res = actions[action][1](*args)
+            temp = chr(ord('A') + len(matrices))
+            matrices[temp] = res
+            if action != 1:
+                print('Результат:')
+                matrices[temp].print()
+            print(f'Матрица записана под именем {temp}')
+        except:
+            print('Что-то пошло не так, проверьте правильность ввода')
 
 
 if __name__ == "__main__":
